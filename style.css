@@ -2,4 +2,34 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: white;
+  background-color: rgb(167, 191, 167);
+}
+
+button {
+  color: white;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.display {
+  width: 500px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.display > div {
+  border: rgb(134, 174, 134) solid;
+  background-color: rgb(134, 174, 134);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.action {
+  border: none;
+  border-radius: 20px;
+  background-color: rgb(134, 174, 134);
+  padding: 20px;
 }

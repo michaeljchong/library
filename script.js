@@ -20,11 +20,11 @@ function addBookToLibrary() {
 }
 
 function displayLibrary() {
-  let list = document.querySelector("ul");
+  let display = document.querySelector(".display");
   myLibrary.forEach(function(book) {
-    entry = document.createElement("li");
+    entry = document.createElement("div");
     entry.innerHTML = book.info();
-    list.appendChild(entry);
+    display.appendChild(entry);
   });
 }
 
