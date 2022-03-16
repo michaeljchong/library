@@ -8,6 +8,7 @@ body {
 
 button {
   color: white;
+  border: none;
 }
 
 button:hover {
@@ -20,16 +21,23 @@ button:hover {
   grid-template-columns: repeat(4, 1fr);
 }
 
-.display > div {
+.book {
+  display: grid;
+  
   border: rgb(134, 174, 134) solid;
   background-color: rgb(134, 174, 134);
   border-radius: 20px;
   padding: 20px;
 }
 
-.action {
-  border: none;
+button.new {
   border-radius: 20px;
-  background-color: rgb(134, 174, 134);
   padding: 20px;
+  background-color: rgb(134, 174, 134);
+}
+
+button.remove {
+  border-radius: 20px;
+  padding: 10px;
+  background-color: rgb(191, 93, 93);
 }

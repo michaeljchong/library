@@ -8,6 +8,9 @@ function Book(title, author, numPages, read) {
   this.info = function() {
     return title + ' by ' + author + ', ' + numPages + ' pages, ' + (read ? 'read' : 'not read yet')
   }
+  this.read = function() {
+    
+  }
 }
 
 function addBookToLibrary() {
@@ -21,11 +24,17 @@ function addBookToLibrary() {
 
 function displayLibrary() {
   let display = document.querySelector(".display");
-  myLibrary.forEach(function(book) {
+  for (let index = 0; index < myLibrary.length; index++) {
     entry = document.createElement("div");
-    entry.innerHTML = book.info();
+    entry.id = index;
+    entry.className = "book"
+    entry.innerHTML = myLibrary[index].info();
+    remove = document.createElement("button");
+    remove.className = "remove";
+    remove.innerHTML = "Remove";
+    entry.appendChild(remove);
     display.appendChild(entry);
-  });
+  }
 }
 
 const hobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, true);
