@@ -8,16 +8,26 @@ function Book(title, author, numPages, read) {
   this.info = function() {
     return title + ' by ' + author + ', ' + numPages + ' pages, ' + (read ? 'read' : 'not read yet')
   }
-  this.read = function() {
-    
+  this.changeRead = function() {
+    this.read = this.read ? false : true;
   }
 }
 
 function addBookToLibrary() {
-  let title = prompt("Enter the book title: ");
-  let author = prompt("Enter the book author: ");
-  let numPages = prompt("Enter the number of pages in the book: ");
-  let read = prompt("Has the book been read? ");
+  let f = document.createElement("form");
+  f.setAttribute('method', "post");
+  f.setAttribute('action', "submit.php");
+  let titleLabel = document.createElement("label");
+  titleLabel.setAttribute('for', "title");
+  titleLabel.innerHTML = "Enter the book title:";
+  let title = document.createElement("input");
+  title.setAttribute('type', "text");
+  title.setAttribute('name', "title");
+  title.id = "title";
+  // let author = prompt("Enter the book author: ");
+  // let numPages = prompt("Enter the number of pages in the book: ");
+  // let read = prompt("Has the book been read? ");
+
   let newBook = new Book(title, author, numPages, read);
   myLibrary.push(newBook);
 }
@@ -25,17 +35,20 @@ function addBookToLibrary() {
 function displayLibrary() {
   let display = document.querySelector(".display");
   for (let index = 0; index < myLibrary.length; index++) {
-    entry = document.createElement("div");
-    entry.id = index;
-    entry.className = "book"
-    entry.innerHTML = myLibrary[index].info();
-    remove = document.createElement("button");
+    let book = document.createElement("div");
+    book.id = index;
+    book.className = "book";
+    book.innerHTML = myLibrary[index].info();
+    let remove = document.createElement("button");
     remove.className = "remove";
     remove.innerHTML = "Remove";
-    entry.appendChild(remove);
-    display.appendChild(entry);
+    book.appendChild(remove);
+    display.appendChild(book);
   }
 }
+
+let newBook = document.querySelector(".new");
+newBook.addEventListener("click", addBookToLibrary);
 
 const hobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, true);
 myLibrary.push(hobbit);
