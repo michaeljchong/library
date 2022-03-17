@@ -8,8 +8,9 @@ function Book(title, author, numPages, read) {
   this.info = function() {
     return title + ' by ' + author + ', ' + numPages + ' pages, ' + (read ? 'read' : 'not read yet')
   }
-  this.changeRead = function() {
-    
+  this.toggleRead = function() {
+    this.read = this.read ? false : true;
+    displayLibrary();
   }
 }
 
@@ -17,6 +18,7 @@ function newBookForm() {
   let f = document.createElement("form");
   f.setAttribute('method', "post");
   f.setAttribute('action', "");
+  f.setAttribute('onsubmit', "return validateForm()")
   let titleLabel = document.createElement("label");
   titleLabel.setAttribute('for', "title");
   titleLabel.innerHTML = "Enter the book title:";
@@ -82,14 +84,11 @@ function addBookToLibrary() {
   let author = document.querySelector("input[name='author']").value;
   let numPages = document.querySelector("input[name='numPages']").value;
   let read = document.querySelector("input[value='true']").checked;
-
   let newBook = new Book(title, author, numPages, read);
   myLibrary.push(newBook);
   document.querySelector("form").remove();
   displayLibrary();
 }
-
-
 
 function displayLibrary() {
   let display = document.querySelector(".display");
@@ -99,9 +98,13 @@ function displayLibrary() {
     book.id = index;
     book.className = "book";
     book.innerHTML = myLibrary[index].info();
+    let toggleReadStatus = document.createElement("button");
+    toggleReadStatus.className = "toggle";
+    toggleReadStatus.innerHTML = "Read / Unread";
     let remove = document.createElement("button");
     remove.className = "remove";
     remove.innerHTML = "Remove";
+    book.appendChild(toggleReadStatus);
     book.appendChild(remove);
     display.appendChild(book);
   }
@@ -109,7 +112,6 @@ function displayLibrary() {
 
 let newBook = document.querySelector(".new");
 newBook.addEventListener("click", newBookForm);
-
 
 const hobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, true);
 myLibrary.push(hobbit);

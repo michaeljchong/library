@@ -5,6 +5,12 @@ body {
   color: white;
   background-color: rgb(167, 191, 167);
   margin: 0 50px;
+  gap: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-family: 'Julius Sans One';
 }
 
 button {
@@ -46,4 +52,8 @@ button.new {
 
 button.remove {
   background-color: rgb(191, 93, 93);
+}
+
+button.toggle {
+  border:rgb(116, 150, 116) solid;
 }
