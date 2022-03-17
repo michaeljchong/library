@@ -115,4 +115,6 @@ newBook.addEventListener("click", newBookForm);
 
 const hobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, true);
 myLibrary.push(hobbit);
+const montecristo = new Book('The Count of Monte Cristo', 'Alexandre Dumas', 1276, true);
+myLibrary.push(montecristo);
 displayLibrary();
