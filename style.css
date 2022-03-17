@@ -4,28 +4,36 @@ body {
   align-items: center;
   color: white;
   background-color: rgb(167, 191, 167);
+  margin: 0 50px;
 }
 
 button {
   color: white;
   border: none;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: rgb(134, 174, 134);
 }
 
 button:hover {
   cursor: pointer;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+}
+
 .display {
-  width: 500px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
 }
 
 .book {
   display: flex;
   flex-direction: column;
   gap: 5px;
-
   border: rgb(134, 174, 134) solid;
   background-color: rgb(134, 174, 134);
   border-radius: 20px;
@@ -33,13 +41,9 @@ button:hover {
 }
 
 button.new {
-  border-radius: 20px;
   padding: 20px;
-  background-color: rgb(134, 174, 134);
 }
 
 button.remove {
-  border-radius: 20px;
-  padding: 10px;
   background-color: rgb(191, 93, 93);
 }
