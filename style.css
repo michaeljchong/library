@@ -26,7 +26,7 @@ button:hover {
 }
 
 form {
-  display: flex;
+  display: none;
   flex-direction: column;
 }
 

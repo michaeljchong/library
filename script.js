@@ -14,69 +14,8 @@ function Book(title, author, numPages, read) {
   }
 }
 
-function newBookForm() {
-  let f = document.createElement("form");
-  f.setAttribute('method', "post");
-  f.setAttribute('action', "");
-  f.setAttribute('onsubmit', "return validateForm()")
-  let titleLabel = document.createElement("label");
-  titleLabel.setAttribute('for', "title");
-  titleLabel.innerHTML = "Enter the book title:";
-  let title = document.createElement("input");
-  title.setAttribute('type', "text");
-  title.setAttribute('name', "title");
-  title.required = true;
-  let authorLabel = document.createElement("label");
-  authorLabel.setAttribute('for', "author");
-  authorLabel.innerHTML = "Enter the book author:";
-  let author = document.createElement("input");
-  author.setAttribute('type', "text");
-  author.setAttribute('name', "author");
-  let numPagesLabel = document.createElement("label");
-  numPagesLabel.setAttribute('for', "numPages");
-  numPagesLabel.innerHTML = "Enter the number of pages in the book:";
-  let numPages = document.createElement("input");
-  numPages.setAttribute('type', "number");
-  numPages.setAttribute('name', "numPages");
-  let readLabel = document.createElement("label");
-  readLabel.setAttribute('for', "read");
-  readLabel.innerHTML = "Has the book been read?";
-  let wasReadDiv = document.createElement("div");
-  let wasRead = document.createElement("input");
-  wasRead.setAttribute('type', "radio");
-  wasRead.setAttribute('name', "read");
-  wasRead.setAttribute('value', true);
-  let wasReadLabel = document.createElement("label");
-  wasReadLabel.setAttribute('for', "Yes");
-  wasReadLabel.innerHTML = "Yes";
-  let unReadDiv = document.createElement("div");
-  let unRead = document.createElement("input");
-  unRead.setAttribute('type', "radio");
-  unRead.setAttribute('name', "read");
-  unRead.setAttribute('value', false);
-  let unReadLabel = document.createElement("label");
-  unReadLabel.setAttribute('for', "No");
-  unReadLabel.innerHTML = "No";
-  let submit = document.createElement("button");
-  submit.setAttribute('type', "button");
-  submit.className = "submit";
-  submit.innerHTML = "Submit";
-  wasReadDiv.appendChild(wasRead);
-  wasReadDiv.appendChild(wasReadLabel);
-  unReadDiv.appendChild(unRead);
-  unReadDiv.appendChild(unReadLabel);
-  f.appendChild(titleLabel);
-  f.appendChild(title);
-  f.appendChild(authorLabel);
-  f.appendChild(author);
-  f.appendChild(numPagesLabel);
-  f.appendChild(numPages);
-  f.appendChild(readLabel);
-  f.appendChild(wasReadDiv);
-  f.appendChild(unReadDiv);
-  f.appendChild(submit);
-  document.body.appendChild(f);
-  document.querySelector(".submit").addEventListener("click", addBookToLibrary);
+function showForm() {
+  document.querySelector("form").style.display = "flex";
 }
 
 function addBookToLibrary() {
@@ -84,9 +23,13 @@ function addBookToLibrary() {
   let author = document.querySelector("input[name='author']").value;
   let numPages = document.querySelector("input[name='numPages']").value;
   let read = document.querySelector("input[value='true']").checked;
-  let newBook = new Book(title, author, numPages, read);
-  myLibrary.push(newBook);
-  document.querySelector("form").remove();
+  if (title !== "" && author !== "" && numPages !== "") {
+    let newBook = new Book(title, author, numPages, read);
+    myLibrary.push(newBook);
+    let form = document.querySelector("form");
+    form.reset();
+    form.style.display = "none";
+  }
   displayLibrary();
 }
 
@@ -110,11 +53,19 @@ function displayLibrary() {
   }
 }
 
+function readStatus() {
+
+}
+
 let newBook = document.querySelector(".new");
-newBook.addEventListener("click", newBookForm);
+newBook.addEventListener("click", showForm);
+document.querySelector(".submit").addEventListener("click", addBookToLibrary);
+// Update read status
+// let toggleRead = document.querySelectorAll(".toggle");
+// toggleRead.addEventListener("click", readStatus);
 
 const hobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, true);
 myLibrary.push(hobbit);
-const montecristo = new Book('The Count of Monte Cristo', 'Alexandre Dumas', 1276, true);
+const montecristo = new Book('The Count of Monte Cristo', 'Alexandre Dumas', 1276, false);
 myLibrary.push(montecristo);
 displayLibrary();
