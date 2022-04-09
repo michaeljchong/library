@@ -9,13 +9,8 @@ function Book(title, author, numPages, read) {
     return title + ' by ' + author + ', ' + numPages + ' pages, ' + (read ? 'read' : 'not read yet')
   }
   this.toggleRead = function() {
-    this.read = this.read ? false : true;
-    displayLibrary();
+    this.read = !this.read;
   }
-}
-
-function showForm() {
-  document.querySelector("form").style.display = "flex";
 }
 
 function addBookToLibrary() {
@@ -40,29 +35,32 @@ function displayLibrary() {
     let book = document.createElement("div");
     book.id = index;
     book.className = "book";
-    book.innerHTML = myLibrary[index].info();
+    let info = document.createElement("p");
+    info.innerHTML = myLibrary[index].info();
     let toggleReadStatus = document.createElement("button");
     toggleReadStatus.className = "toggle";
     toggleReadStatus.innerHTML = "Read / Unread";
     let remove = document.createElement("button");
     remove.className = "remove";
     remove.innerHTML = "Remove";
+    book.appendChild(info);
     book.appendChild(toggleReadStatus);
     book.appendChild(remove);
     display.appendChild(book);
+
+    remove.addEventListener("click", () => {
+      myLibrary.splice(index, 1);
+      remove.parentNode.remove();
+    });
   }
 }
 
-function readStatus() {
-
-}
-
 let newBook = document.querySelector(".new");
-newBook.addEventListener("click", showForm);
+newBook.addEventListener("click", function() {
+  document.querySelector("form").style.display = "flex";
+});
 document.querySelector(".submit").addEventListener("click", addBookToLibrary);
-// Update read status
-// let toggleRead = document.querySelectorAll(".toggle");
-// toggleRead.addEventListener("click", readStatus);
+
 
 const hobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, true);
 myLibrary.push(hobbit);
