@@ -6,7 +6,7 @@ function Book(title, author, numPages, read) {
   this.numPages = numPages;
   this.read = read;
   this.info = function() {
-    return title + ' by ' + author + ', ' + numPages + ' pages, ' + (read ? 'read' : 'not read yet')
+    return this.title + ' by ' + this.author + ', ' + this.numPages + ' pages, ' + (this.read ? 'read' : 'not read yet')
   }
   this.toggleRead = function() {
     this.read = !this.read;
@@ -47,7 +47,10 @@ function displayLibrary() {
     book.appendChild(toggleReadStatus);
     book.appendChild(remove);
     display.appendChild(book);
-
+    toggleReadStatus.addEventListener("click", () => {
+      myLibrary[index].toggleRead();
+      info.innerHTML = myLibrary[index].info();
+    });
     remove.addEventListener("click", () => {
       myLibrary.splice(index, 1);
       remove.parentNode.remove();
