@@ -8,10 +8,11 @@ class Book {
     this.read = read;
   }
   
-  this.info = function() {
+  info() {
     return this.title + ' by ' + this.author + ', ' + this.numPages + ' pages, ' + (this.read ? 'read' : 'not read yet')
   }
-  this.toggleRead = function() {
+
+  toggleRead() {
     this.read = !this.read;
   }
 }
