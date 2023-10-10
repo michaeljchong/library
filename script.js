@@ -1,4 +1,4 @@
-let myLibrary = [];
+const myLibrary = [];
 
 class Book {
   constructor(title, author, numPages, read) {
