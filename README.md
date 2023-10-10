@@ -1,6 +1,6 @@
 <h1>Library</h1>
 
-<p>A simple book library application.</p>
+<p>A simple book library application. <a href="https://michaeljchong.github.io/library/">Live Preview</a></p>
 
 <h2>Lesson's Learned:</h2>
 <ul>
